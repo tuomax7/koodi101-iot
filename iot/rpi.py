@@ -1,14 +1,20 @@
 #!/usr/bin/python3
 
-import envirophat
+import Adafruit_DHT
 import json
 import requests
 import os
 import time
 
 def readSensors():
+    try:
+        pin = os.environ["GPIO"]
+    except:
+        pin = 4
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, pin)
     sensors = {
-        "temperature": envirophat.weather.temperature()
+        "temperature": temperature,
+        "humidity": humidity,
     }
 
     return sensors 

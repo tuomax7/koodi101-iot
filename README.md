@@ -42,7 +42,8 @@ Let's update our system and install some needed libraries.
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install python3-requests python3-envirophat git
+sudo apt-get install python3-pip git
+sudo pip3 install requests Adafruit_DHT
 ```
 
 First clone your forked version of this repository to the Rasperry pi and go to the iot folder
@@ -52,7 +53,7 @@ git clone <url>
 
 You can now try our app by starting it with
 ```
-ENDPOINT=http://you-server/api/temperature python3 phat.py
+ENDPOINT=http://you-server/api/temperature python3 rpi.py
 ```
 
 ### Starting the app automatically
@@ -65,18 +66,18 @@ That can be achieved by opening crontab editor by typing ```crontab -e```
 Window will open and you can append the following line at end of the file,
 of course replacing the endpoint with a correct one.
 ```
-* * * * * ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-iot/iot/phat.py >> /home/pi/phat.log 2>&1
+* * * * * ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-iot/iot/rpi.py >> /home/pi/rpi.log 2>&1
 ```
 So what does this mean?
-* **\* \* \* \* \*** ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-template/iot/phat.py >> /home/pi/phat.log 2>&1
+* **\* \* \* \* \*** ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-template/iot/rpi.py >> /home/pi/rpi.log 2>&1
     * When to run the script, *see below*
-* \* \* \* \* \* **ENDPOINT=http://you-server/api/temperature** python3 /home/pi/koodi101-template/iot/phat.py >> /home/pi/phat.log 2>&1
+* \* \* \* \* \* **ENDPOINT=http://you-server/api/temperature** python3 /home/pi/koodi101-template/iot/rpi.py >> /home/pi/rpi.log 2>&1
     * Pass environmental variable for script to be executed
-* \* \* \* \* \* ENDPOINT=http://you-server/api/temperature **python3 /home/pi/koodi101-template/iot/phat.py** >> /home/pi/phat.log 2>&1
+* \* \* \* \* \* ENDPOINT=http://you-server/api/temperature **python3 /home/pi/koodi101-template/iot/rpi.py** >> /home/pi/rpi.log 2>&1
     * Normal command to run a script with python
-* \* \* \* \* \* ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-template/iot/phat.py **>> /home/pi/phat.log** 2>&1
+* \* \* \* \* \* ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-template/iot/rpi.py **>> /home/pi/rpi.log** 2>&1
     * **Append** output to a file
-* \* \* \* \* \* ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-template/iot/phat.py >> /home/pi/phat.log **2>&1**
+* \* \* \* \* \* ENDPOINT=http://you-server/api/temperature python3 /home/pi/koodi101-template/iot/rpi.py >> /home/pi/rpi.log **2>&1**
     * By default, error messages wouldn't be logged into the file.
       With this definition, we redirect the to standard output and
       therefore into the same file.
