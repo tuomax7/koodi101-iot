@@ -9,10 +9,8 @@ import time
 #hellou
 
 def readSensors():
-    try:
-        pin = os.environ["GPIO"]
-    except:
-        pin = 4
+    pin = os.environ["GPIO"]
+
     humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, pin)
     sensors = {
         "temperature": temperature,
