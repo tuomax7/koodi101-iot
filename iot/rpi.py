@@ -13,15 +13,15 @@ def readSensors():
 
     humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, pin)
     sensors = {
-        "temperature": temperature,
-        "humidity": humidity,
+        "message": "Humidity: " + str(humidity) + " Temperature: " + str(temperature)
+        
     }
 
     return sensors 
 
 if __name__ == "__main__":
-    #url = os.environ["ENDPOINT"]
-    #print(url)
+    url = os.environ["ENDPOINT"]
+    print(url)
 
     sensorsJson = json.dumps(readSensors(), sort_keys=True, indent=2)
 
@@ -29,4 +29,4 @@ if __name__ == "__main__":
     print(sensorsJson)
 
     headers = {'content-type': 'application/json'}
-    #requests.post(url, data=sensorsJson, headers=headers)
+    requests.post(url, data=sensorsJson, headers=headers)
