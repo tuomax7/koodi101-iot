@@ -6,6 +6,8 @@ import requests
 import os
 import time
 
+#hellou
+
 def readSensors():
     try:
         pin = os.environ["GPIO"]
