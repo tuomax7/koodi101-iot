@@ -37,6 +37,14 @@ sudo systemctl start ssh
 
 Now you can connect from your own machine with ```ssh pi@<ip>``` if you are in the same network.
 
+### Setting up the sensor
+To read data from the DHT11 humidity sensor with Raspberry Pi, it needs to be connected to the device. The sensor has three pins which need to be connected to corresponding IO-pins in Raspberry: VCC (power), ground and data. Each pin is labeled in the sensor. Corresponding pins in the IOT-device can be seen from [Raspberry Pi's website](https://www.raspberrypi.org/documentation/usage/gpio/), or with the `pinout` command on Raspberry's command line. 
+
+**The default data pin is set to GPIO4.** This can be changed by setting the desired pin to the `GPIO` environment variable e.g. when running the scipt with the command (more examples about running the script below):
+```
+GPIO=14 python3 rpi.py
+```
+
 ### Run the project
 Let's update our system and install some needed libraries.
 ```
